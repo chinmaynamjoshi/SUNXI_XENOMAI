@@ -22,18 +22,17 @@
 ENTRY(do_vfp)
 #ifdef CONFIG_PREEMPT
 	ldr	r4, [r10, #TI_PREEMPT]	@ get preempt count
-	add	r11, r4, #1		@ increment it
-	str	r11, [r10, #TI_PREEMPT]
+ 	add	r11, r4, #1		@ increment it
+ 	str	r11, [r10, #TI_PREEMPT]
 #endif
-	enable_irq
-	str	r2, [sp, #S_PC]		@ update regs->ARM_pc for Thumb 2 case
- 	ldr	r4, .LCvfp
-	ldr	r11, [r10, #TI_CPU]	@ CPU number
-	add	r10, r10, #TI_VFPSTATE	@ r10 = workspace
+  	ldr	r4, .LCvfp
+ 	ldr	r11, [r10, #TI_CPU]	@ CPU number
+ 	add	r10, r10, #TI_VFPSTATE	@ r10 = workspace
 	ldr	pc, [r4]		@ call VFP entry point
 ENDPROC(do_vfp)
 
 ENTRY(vfp_null_entry)
+	enable_irq
 #ifdef CONFIG_PREEMPT
 	get_thread_info	r10
 	ldr	r4, [r10, #TI_PREEMPT]	@ get preempt count
@@ -52,6 +51,7 @@ ENDPROC(vfp_null_entry)
 
 	__INIT
 ENTRY(vfp_testing_entry)
+	enable_irq
 #ifdef CONFIG_PREEMPT
 	get_thread_info	r10
 	ldr	r4, [r10, #TI_PREEMPT]	@ get preempt count
