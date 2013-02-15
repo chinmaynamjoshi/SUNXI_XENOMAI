@@ -633,6 +633,7 @@ config ARCH_SUN4I
 
 config ARCH_SUN5I
         bool "AllWinner SUN5I Platform"
+	select IPIPE_ARM_KUSER_TSC if IPIPE
         select CPU_V7
         select ARM_AMBA
         select HAVE_CLK

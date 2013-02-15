@@ -95,6 +95,9 @@
 #elif defined(CONFIG_PLAT_SPEAR)
 #define RTHAL_TIMER_DEVICE      "tmr0"
 #define RTHAL_CLOCK_DEVICE	"tmr1"
+#elif defined(CONFIG_ARCH_SUN5I)
+#define RTHAL_TIMER_DEVICE     "timer2"
+#define RTHAL_CLOCK_DEVICE	"timer0"
 #else
 #error "Unsupported ARM machine"
 #endif /* CONFIG_ARCH_SA1100 */
